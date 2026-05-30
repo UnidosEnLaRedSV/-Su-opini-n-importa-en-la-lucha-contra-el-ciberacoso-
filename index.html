@@ -12,7 +12,7 @@
             box-sizing: border-box;
         }
 
-        /* Fondo principal: PAISAJE BORROSO (montañas/atardecer) */
+        /* Fondo principal: PAISAJE BORROSO */
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -28,7 +28,7 @@
             transition: background-image 0.8s ease-in-out;
         }
 
-        /* Capa de desenfoque y oscurecimiento suave para que el texto sea legible */
+        /* Capa de desenfoque */
         body::before {
             content: "";
             position: fixed;
@@ -60,7 +60,7 @@
             padding: 2rem 2rem 2rem 2rem;
         }
 
-        /* Hero con animación de escritura */
+        /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 3rem;
@@ -251,9 +251,43 @@
             border-top: 1px solid rgba(150, 140, 190, 0.4);
             padding-top: 1.5rem;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .footer-main {
+            display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
+            width: 100%;
+        }
+
+        .footer-school {
+            text-align: center;
+            font-size: 0.9rem;
+            background: rgba(100, 80, 160, 0.15);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+
+        .insajo-highlight {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #3a2c6e, #6b4e9e, #4a3f8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .section-text {
+            font-weight: 600;
+            color: #3d3a6b;
         }
 
         .music-control {
@@ -287,6 +321,7 @@
             .main-content { padding: 1.2rem; }
             .message-container { font-size: 1rem; }
             .music-control { bottom: 15px; right: 15px; padding: 0.4rem 1rem; }
+            .footer-main { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -313,9 +348,16 @@
         <div style="display: flex; justify-content: center; margin: 0.5rem 0 0.5rem;">
             <button id="backToCalmBtn" class="calm-btn">🌿 Volver a la calma 🌿</button>
         </div>
+        
         <div class="footer">
-            <div>💜 Creado con propósito por: Nataly | UnidosEnLaRedSV</div>
-            <div>🕊️ respeto · empatía · cambio real</div>
+            <div class="footer-main">
+                <div>💜 Creado con propósito por: Nataly | UnidosEnLaRedSV</div>
+                <div>🕊️ respeto · empatía · cambio real</div>
+            </div>
+            <div class="footer-school">
+                <span class="section-text">✨ 1er año General, Sección A ✨</span><br>
+                <span class="insajo-highlight">🏫 INSAJO 🏫</span>
+            </div>
         </div>
     </div>
 </div>
@@ -410,17 +452,16 @@
     });
 
     // --------------------------------------------------------------
-    // 2. SONIDO DE TECLADO SUAVE (TENUE) PARA EL EFECTO DE ESCRITURA
+    // 2. SONIDO DE TECLADO SUAVE (TENUE)
     // --------------------------------------------------------------
     let audioCtx = null;
     let keystrokeGain = null;
     
-    // Inicializar audio context solo cuando se necesite (para cumplir políticas de navegador)
     function initKeystrokeAudio() {
         if (audioCtx) return;
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         keystrokeGain = audioCtx.createGain();
-        keystrokeGain.gain.value = 0.12; // Volumen muy suave y tenue
+        keystrokeGain.gain.value = 0.12;
         keystrokeGain.connect(audioCtx.destination);
     }
     
@@ -428,7 +469,6 @@
         if (!audioCtx) {
             initKeystrokeAudio();
         }
-        // Si el contexto está suspendido, lo reanudamos (por la política de autoplay)
         if (audioCtx && audioCtx.state === 'suspended') {
             audioCtx.resume().then(() => {
                 actuallyPlayKeystroke();
@@ -440,17 +480,16 @@
     
     function actuallyPlayKeystroke() {
         if (!audioCtx || !keystrokeGain) return;
-        const now = audioCtx.currentTime;
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.value = 880; // Nota agradable y suave (tipo "tic")
+        osc.frequency.value = 880;
         gainNode.gain.value = 0.08;
         osc.connect(gainNode);
         gainNode.connect(keystrokeGain);
         osc.start();
-        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
-        osc.stop(now + 0.12);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
+        osc.stop(audioCtx.currentTime + 0.12);
     }
 
     // --------------------------------------------------------------
@@ -546,20 +585,14 @@
     // 5. FUNCIONES PARA EL MENÚ Y NARRATIVA (CON SONIDO DE TECLADO)
     // --------------------------------------------------------------
     let typeTimeout = null;
-    let currentSoundInterval = null;
 
     function stopTypewriter() {
         if (typeTimeout) {
             clearTimeout(typeTimeout);
             typeTimeout = null;
         }
-        if (currentSoundInterval) {
-            clearInterval(currentSoundInterval);
-            currentSoundInterval = null;
-        }
     }
 
-    // Función que escribe y reproduce sonido suave con cada carácter
     function startTypewriterWithSound(element, text, speed = 42) {
         stopTypewriter();
         element.innerHTML = '';
@@ -567,14 +600,11 @@
         
         function writeLetter() {
             if (index < text.length) {
-                // Agregar letra
                 element.textContent += text.charAt(index);
-                // Reproducir sonido de teclado suave
                 playSoftKeystroke();
                 index++;
                 typeTimeout = setTimeout(writeLetter, speed);
             } else {
-                // Terminar: agregar cursor parpadeante
                 const cursorSpan = document.createElement('span');
                 cursorSpan.className = 'message-cursor';
                 cursorSpan.textContent = '|';
@@ -630,7 +660,6 @@
         }
         narrativeArea.style.display = 'block';
         setImageFade(dynamicImg, option.image);
-        // Iniciar escritura con sonido de teclado suave
         startTypewriterWithSound(typewriterDiv, option.message, 40);
         narrativeArea.style.animation = 'none';
         narrativeArea.offsetHeight;
@@ -655,8 +684,6 @@
         dynamicImg.src = "https://images.pexels.com/photos/6646872/pexels-photo-6646872.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop";
         preloadImages();
         animateHero();
-        
-        // Preinicializar el audio de teclado (sin sonido aún, solo prepara el contexto)
         initKeystrokeAudio();
     }
 
