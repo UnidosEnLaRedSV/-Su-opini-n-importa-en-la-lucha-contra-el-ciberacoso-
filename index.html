@@ -6,13 +6,7 @@
     <title>Unidos En La Red SV | Transformando el ruido digital en empatía</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Fondo principal: PAISAJE BORROSO */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -27,8 +21,6 @@
             background-attachment: fixed;
             transition: background-image 0.8s ease-in-out;
         }
-
-        /* Capa de desenfoque */
         body::before {
             content: "";
             position: fixed;
@@ -41,7 +33,6 @@
             z-index: 0;
             pointer-events: none;
         }
-
         .app-container {
             position: relative;
             z-index: 2;
@@ -50,24 +41,17 @@
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(3px);
             border-radius: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
         }
-
-        .main-content {
-            padding: 2rem 2rem 2rem 2rem;
-        }
-
-        /* Hero */
+        .main-content { padding: 2rem; }
         .hero {
             text-align: center;
             margin-bottom: 3rem;
             border-bottom: 1px solid rgba(150, 140, 180, 0.3);
             padding-bottom: 2rem;
         }
-
         .hero h1 {
             font-size: clamp(1.8rem, 6vw, 3.2rem);
             font-weight: 700;
@@ -78,7 +62,6 @@
             margin-bottom: 1rem;
             min-height: 4.5rem;
         }
-
         .hero-sub {
             font-size: 1.1rem;
             color: #2c2e4e;
@@ -88,7 +71,6 @@
             min-height: 3.3rem;
             font-weight: 500;
         }
-
         .hero-cursor {
             display: inline-block;
             width: 3px;
@@ -97,104 +79,60 @@
             animation: blink 1s infinite;
             vertical-align: middle;
         }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
         .options-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
             margin: 2.5rem 0 2rem;
         }
-
         .option-card {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(4px);
             border-radius: 2rem;
             padding: 1.6rem 1.2rem;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
             cursor: pointer;
-            border: 1px solid rgba(200, 190, 230, 0.8);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(200,190,230,0.8);
             text-align: center;
             opacity: 0;
             transform: translateY(20px);
             animation: cardFadeInUp 0.5s forwards;
         }
-
         .option-card:nth-child(1) { animation-delay: 0.05s; }
         .option-card:nth-child(2) { animation-delay: 0.1s; }
         .option-card:nth-child(3) { animation-delay: 0.15s; }
         .option-card:nth-child(4) { animation-delay: 0.2s; }
         .option-card:nth-child(5) { animation-delay: 0.25s; }
-
-        @keyframes cardFadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        @keyframes cardFadeInUp { to { opacity: 1; transform: translateY(0); } }
         .option-card:hover {
             transform: translateY(-6px);
             background: #ffffff;
             border-color: #b8adf0;
-            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
         }
-
-        .option-emoji {
-            font-size: 2.8rem;
-            display: block;
-            margin-bottom: 0.75rem;
-        }
-
-        .option-title {
-            font-weight: 700;
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-            color: #2b2d42;
-        }
-
-        .option-purpose {
-            font-size: 0.85rem;
-            color: #6b6f8b;
-            line-height: 1.4;
-        }
-
+        .option-emoji { font-size: 2.8rem; display: block; margin-bottom: 0.75rem; }
+        .option-title { font-weight: 700; font-size: 1.35rem; margin-bottom: 0.5rem; color: #2b2d42; }
+        .option-purpose { font-size: 0.85rem; color: #6b6f8b; }
         .narrative-area {
             margin: 2rem 0 1.5rem;
-            background: rgba(250, 250, 255, 0.8);
+            background: rgba(250,250,255,0.8);
             border-radius: 2rem;
             padding: 1.8rem;
-            border: 1px solid rgba(180, 170, 230, 0.7);
+            border: 1px solid rgba(180,170,230,0.7);
             animation: fadeScale 0.4s ease;
         }
-
-        @keyframes fadeScale {
-            from { opacity: 0; transform: scale(0.97);}
-            to { opacity: 1; transform: scale(1);}
-        }
-
-        .zen-image {
-            text-align: center;
-        }
-
+        @keyframes fadeScale { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+        .zen-image { text-align: center; }
         .zen-image img {
             max-width: 100%;
             border-radius: 2rem;
             max-height: 300px;
-            width: auto;
             object-fit: cover;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-            border: 1px solid #e2defa;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
         }
-
         .message-container {
             margin-top: 1.8rem;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             border-radius: 1.5rem;
             padding: 1.5rem;
             font-size: 1.2rem;
@@ -203,15 +141,8 @@
             color: #1f2340;
             border-left: 6px solid #9f8bef;
             min-height: 170px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-
-        .typed-text {
-            font-family: 'Inter', monospace;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
+        .typed-text { font-family: 'Inter', monospace; white-space: pre-wrap; word-break: break-word; }
         .message-cursor {
             display: inline-block;
             width: 3px;
@@ -219,61 +150,99 @@
             background-color: #6c5bcf;
             animation: blink 1s infinite;
         }
-
+        .opinion-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed rgba(150,140,180,0.4);
+        }
+        .opinion-label { font-weight: 600; color: #4a3f8a; margin-bottom: 0.5rem; display: block; font-size: 0.9rem; }
+        .opinion-textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid #ddd9f0;
+            background: rgba(255,255,255,0.95);
+            font-family: 'Inter', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+        }
+        .opinion-textarea:focus { outline: none; border-color: #9f8bef; }
+        .send-opinion-btn {
+            margin-top: 0.8rem;
+            background: linear-gradient(135deg, #6c5bcf, #9f8bef);
+            border: none;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .send-opinion-btn:hover { transform: scale(1.02); }
+        .send-opinion-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .ai-response {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(108,91,207,0.1);
+            border-radius: 1rem;
+            border-left: 4px solid #6c5bcf;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #2c2e4e;
+        }
+        .ai-response-content { font-family: 'Inter', monospace; white-space: pre-wrap; }
+        .typing-indicator { display: inline-flex; gap: 4px; align-items: center; }
+        .typing-indicator span {
+            width: 6px; height: 6px; background-color: #6c5bcf; border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
         .calm-btn {
-            background: rgba(240, 239, 250, 0.95);
+            background: rgba(240,239,250,0.95);
             border: 1px solid #cbc3f0;
             color: #3f3a6b;
             padding: 0.8rem 2rem;
             border-radius: 60px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.25s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin-top: 0.5rem;
             font-size: 1rem;
         }
-
-        .calm-btn:hover {
-            background: #e5e1ff;
-            border-color: #a897e6;
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
+        .calm-btn:hover { background: #e5e1ff; transform: scale(1.02); }
         .footer {
             margin-top: 2.5rem;
             text-align: center;
             font-size: 0.85rem;
             color: #4a4e6e;
-            border-top: 1px solid rgba(150, 140, 190, 0.4);
+            border-top: 1px solid rgba(150,140,190,0.4);
             padding-top: 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.8rem;
         }
-
-        .footer-main {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            width: 100%;
-        }
-
+        .footer-main { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; width: 100%; }
         .footer-school {
             text-align: center;
             font-size: 0.9rem;
-            background: rgba(100, 80, 160, 0.15);
+            background: rgba(100,80,160,0.15);
             padding: 0.5rem 1.2rem;
             border-radius: 40px;
             display: inline-block;
             margin-top: 0.3rem;
         }
-
         .insajo-highlight {
             font-weight: 800;
             font-size: 1.1rem;
@@ -282,46 +251,38 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-
-        .section-text {
-            font-weight: 600;
-            color: #3d3a6b;
-        }
-
+        .section-text { font-weight: 600; color: #3d3a6b; }
         .music-control {
             position: fixed;
             bottom: 25px;
             right: 25px;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255,255,255,0.9);
             backdrop-filter: blur(8px);
-            border-radius: 60px;
-            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             border: 1px solid #ccc6e8;
             cursor: pointer;
             transition: 0.2s;
             font-weight: 500;
             color: #2d2b4e;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        .music-control:hover {
-            background: #ffffff;
-            border-color: #ae9ef0;
-            transform: scale(1.02);
+        .music-control:hover { background: #ffffff; transform: scale(1.05); }
+        .music-control.playing {
+            background: #6c5bcf;
+            color: white;
+            border-color: #5a4ab0;
         }
-
         @media (max-width: 680px) {
             .main-content { padding: 1.2rem; }
             .message-container { font-size: 1rem; }
-            .music-control { bottom: 15px; right: 15px; padding: 0.4rem 1rem; }
-            .footer-main { flex-direction: column; align-items: center; }
+            .music-control { bottom: 15px; right: 15px; padding: 0.4rem 0.8rem; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -343,9 +304,17 @@
             <div class="message-container">
                 <div id="typewriterText" class="typed-text"></div>
             </div>
+            <div class="opinion-section" id="opinionSection" style="display: none;">
+                <label class="opinion-label">💬 ¿Qué opinas o cómo te sientes después de leer esto?</label>
+                <textarea id="opinionInput" class="opinion-textarea" rows="3" placeholder="Escribe aquí tu reflexión..."></textarea>
+                <button id="sendOpinionBtn" class="send-opinion-btn">✨ Enviar reflexión ✨</button>
+                <div id="aiResponse" class="ai-response" style="display: none;">
+                    <div id="aiResponseText" class="ai-response-content"></div>
+                </div>
+            </div>
         </div>
 
-        <div style="display: flex; justify-content: center; margin: 0.5rem 0 0.5rem;">
+        <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
             <button id="backToCalmBtn" class="calm-btn">🌿 Volver a la calma 🌿</button>
         </div>
         
@@ -362,98 +331,176 @@
     </div>
 </div>
 
-<div id="musicToggle" class="music-control">
-    <span>🎵</span>
-    <span id="musicStatusText">Música relajante</span>
-</div>
+<!-- Elemento de audio con TU archivo musica_relajante.mp3 -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="musica_relajante.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Botón de música -->
+<button id="musicToggle" class="music-control" title="Activar/Desactivar música">
+    <span id="musicIcon">🔇</span>
+</button>
 
 <script>
-    // --------------------------------------------------------------
-    // 1. REPRODUCCIÓN AUTOMÁTICA DE MÚSICA (YouTube API)
-    // --------------------------------------------------------------
-    let player;
-    let isPlayerReady = false;
-    let musicActive = true;
-
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtubeAudioPlayer', {
-            height: '0',
-            width: '0',
-            videoId: 'Tvb0iK5aP3Y',
-            playerVars: {
-                'autoplay': 1,
-                'loop': 1,
-                'controls': 0,
-                'disablekb': 1,
-                'fs': 0,
-                'modestbranding': 1,
-                'rel': 0,
-                'showinfo': 0,
-                'playlist': 'Tvb0iK5aP3Y'
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    function onPlayerReady(event) {
-        isPlayerReady = true;
-        event.target.playVideo();
-        document.getElementById('musicStatusText').innerText = "🎵 Música activa";
-    }
-
-    function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.ENDED) {
-            player.playVideo();
-        }
-        if (event.data == YT.PlayerState.PLAYING) {
-            musicActive = true;
-            document.getElementById('musicStatusText').innerText = "🎵 Música activa";
-        }
-        if (event.data == YT.PlayerState.PAUSED) {
-            musicActive = false;
-            document.getElementById('musicStatusText').innerText = "🔇 Silencio";
-        }
-    }
-
-    function toggleMusic() {
-        if (!isPlayerReady) return;
-        if (musicActive) {
-            player.pauseVideo();
-            musicActive = false;
-            document.getElementById('musicStatusText').innerText = "🔇 Silencio";
-        } else {
-            player.playVideo();
-            musicActive = true;
-            document.getElementById('musicStatusText').innerText = "🎵 Música activa";
-        }
-    }
-
-    const ytContainer = document.createElement('div');
-    ytContainer.id = 'youtubeAudioPlayer';
-    ytContainer.style.position = 'absolute';
-    ytContainer.style.width = '0';
-    ytContainer.style.height = '0';
-    ytContainer.style.opacity = '0';
-    ytContainer.style.pointerEvents = 'none';
-    document.body.appendChild(ytContainer);
-
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+    // ============================================================
+    // 1. MÚSICA DE FONDO - musica_relajante.mp3
+    // ============================================================
+    const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggle');
-    musicBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleMusic();
+    const musicIcon = document.getElementById('musicIcon');
+    let musicPlaying = false;
+    let musicStarted = false;
+    
+    // Configurar volumen
+    bgMusic.volume = 0.4;
+    
+    // Función para iniciar la música
+    function startMusic() {
+        if (!musicStarted) {
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicStarted = true;
+                musicBtn.classList.add('playing');
+                musicIcon.textContent = '🔊';
+                console.log('✅ Música iniciada: musica_relajante.mp3');
+            }).catch(err => {
+                console.log('⏳ Esperando interacción del usuario...');
+            });
+        }
+    }
+    
+    // Función para alternar música
+    function toggleMusic(e) {
+        if (e) e.stopPropagation();
+        
+        if (!musicStarted) {
+            startMusic();
+            return;
+        }
+        
+        if (musicPlaying) {
+            bgMusic.pause();
+            musicPlaying = false;
+            musicBtn.classList.remove('playing');
+            musicIcon.textContent = '🔇';
+            console.log('⏸️ Música pausada');
+        } else {
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicBtn.classList.add('playing');
+                musicIcon.textContent = '🔊';
+                console.log('▶️ Música reproduciéndose');
+            }).catch(err => {
+                console.error('❌ Error al reproducir:', err);
+            });
+        }
+    }
+    
+    // Eventos del elemento de audio
+    bgMusic.addEventListener('play', () => {
+        musicPlaying = true;
+        musicBtn.classList.add('playing');
+        musicIcon.textContent = '🔊';
     });
-
-    // --------------------------------------------------------------
-    // 2. SONIDO DE TECLADO SUAVE (TENUE)
-    // --------------------------------------------------------------
+    
+    bgMusic.addEventListener('pause', () => {
+        musicPlaying = false;
+        musicBtn.classList.remove('playing');
+        musicIcon.textContent = '🔇';
+    });
+    
+    bgMusic.addEventListener('error', (e) => {
+        console.error('❌ Error al cargar musica_relajante.mp3:', e);
+        musicIcon.textContent = '❌';
+    });
+    
+    // Click en el botón de música
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    // Activar música con el primer clic en cualquier parte de la página
+    document.addEventListener('click', function initMusicOnFirstClick(e) {
+        if (!musicStarted && e.target !== musicBtn && !musicBtn.contains(e.target)) {
+            startMusic();
+        }
+    }, { once: false });
+    
+    // También permitir tecla 'M'
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'm' || e.key === 'M') {
+            e.preventDefault();
+            toggleMusic();
+        }
+    });
+    
+    // Intentar reproducir automáticamente al cargar
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicStarted = true;
+                musicBtn.classList.add('playing');
+                musicIcon.textContent = '🔊';
+                console.log('✅ Música iniciada automáticamente');
+            }).catch(err => {
+                console.log('🔇 Autoplay bloqueado. La música comenzará con tu primer clic.');
+                musicIcon.textContent = '🎵';
+            });
+        }, 1000);
+    });
+    
+    console.log('🎵 Sistema de música configurado: musica_relajante.mp3');
+    
+    // ============================================================
+    // 2. GROQ API
+    // ============================================================
+    const GROQ_API_KEY = "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";
+    const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+    const GROQ_MODEL = "llama-3.1-8b-instant";
+    
+    let currentOptionContext = "";
+    
+    async function callGroqAPI(userOpinion, contextType) {
+        const prompt = `Eres una persona empática, cálida y muy humana que apoya a personas que han leído un mensaje sobre ciberacoso y reflexión personal. El usuario acaba de leer un mensaje que aborda este tema: "${contextType}". Luego escribió la siguiente opinión o sentimiento: "${userOpinion}". Responde de manera muy empática, breve (máximo 3 oraciones), reconfortante, con consejos prácticos y amables. Usa un tono cálido como de un amigo cercano que realmente se preocupa. Incluye emojis sutiles. No uses negatividad. Sé auténtico y cercano. No digas que eres una IA, solo responde como una persona que se preocupa.`;
+        
+        try {
+            const response = await fetch(GROQ_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${GROQ_API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: GROQ_MODEL,
+                    messages: [
+                        { role: "system", content: "Eres un asistente empático y cálido que responde como un amigo cercano." },
+                        { role: "user", content: prompt }
+                    ],
+                    temperature: 0.75,
+                    max_tokens: 200
+                })
+            });
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Error Groq API:", errorData);
+                
+                if (response.status === 429) {
+                    return "💜 La comunidad de apoyo está teniendo mucha actividad en este momento. Dame un respiro de 30 segundos y vuelve a intentarlo. ¡Tu opinión es muy importante! 🌟";
+                }
+                return `💜 Lo siento, en este momento no puedo procesar tu mensaje. Por favor, inténtalo de nuevo más tarde. 🌟`;
+            }
+            
+            const data = await response.json();
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error("Error de conexión:", error);
+            return "💜 Gracias por compartir tu sentir. Tu voz es importante. Recuerda que cada pequeño paso hacia la reflexión es un acto de valentía. No estás solo/a en este camino. 🌟";
+        }
+    }
+    
+    // ============================================================
+    // 3. SONIDO DE TECLADO
+    // ============================================================
     let audioCtx = null;
     let keystrokeGain = null;
     
@@ -461,18 +508,14 @@
         if (audioCtx) return;
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         keystrokeGain = audioCtx.createGain();
-        keystrokeGain.gain.value = 0.12;
+        keystrokeGain.gain.value = 0.22;
         keystrokeGain.connect(audioCtx.destination);
     }
     
     function playSoftKeystroke() {
-        if (!audioCtx) {
-            initKeystrokeAudio();
-        }
+        if (!audioCtx) initKeystrokeAudio();
         if (audioCtx && audioCtx.state === 'suspended') {
-            audioCtx.resume().then(() => {
-                actuallyPlayKeystroke();
-            }).catch(e => console.log);
+            audioCtx.resume().then(() => actuallyPlayKeystroke()).catch(e => console.log);
         } else {
             actuallyPlayKeystroke();
         }
@@ -484,17 +527,17 @@
         const gainNode = audioCtx.createGain();
         osc.type = 'sine';
         osc.frequency.value = 880;
-        gainNode.gain.value = 0.08;
+        gainNode.gain.value = 0.12;
         osc.connect(gainNode);
         gainNode.connect(keystrokeGain);
         osc.start();
-        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
-        osc.stop(audioCtx.currentTime + 0.12);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
+        osc.stop(audioCtx.currentTime + 0.1);
     }
 
-    // --------------------------------------------------------------
-    // 3. DEFINICIÓN DE OPCIONES
-    // --------------------------------------------------------------
+    // ============================================================
+    // 4. OPCIONES
+    // ============================================================
     const optionsData = [
         {
             id: "herir",
@@ -502,7 +545,8 @@
             purpose: "Dirigido a quien reconoce que ha sido agresivo y busca entender el daño.",
             emoji: "⚡💔",
             message: "Reconocer que tus acciones han lastimado a alguien no es un signo de debilidad, es el primer paso de tu grandeza. Detrás de cada pantalla hay un corazón latiendo; elige ser la persona que siembra paz donde otros siembran espinas. El perdón empieza en la conciencia, hoy comienza tu transformación.",
-            image: "https://images.pexels.com/photos/6646872/pexels-photo-6646872.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
+            image: "https://images.pexels.com/photos/6646872/pexels-photo-6646872.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            context: "reflexión sobre haber herido a otros con palabras"
         },
         {
             id: "dolor",
@@ -510,7 +554,8 @@
             purpose: "Un refugio para quien está sufriendo ciberacoso en este momento.",
             emoji: "🌀🕯️",
             message: "Tu valor es intrínseco e inalterable. Ningún comentario tiene el poder de borrar quién eres en realidad. Esta tormenta es solo temporal, pero tu fortaleza es permanente. Respira, apaga la pantalla y recuerda: eres amado/a. Eres más que un like, eres luz infinita.",
-            image: "https://images.pexels.com/photos/568021/pexels-photo-568021.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
+            image: "https://images.pexels.com/photos/568021/pexels-photo-568021.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            context: "estar sufriendo por el mundo digital y el ciberacoso"
         },
         {
             id: "valor",
@@ -518,7 +563,8 @@
             purpose: "Para quien ha dejado que una opinión externa distorsione su percepción.",
             emoji: "🌟🌱",
             message: "No permitas que la opinión distorsionada de otros se convierta en tu realidad. Los comentarios ajenos dicen mucho más de quien los escribe que de quien los recibe. Vuelve a tu esencia, a lo que amas de ti, porque eso es lo único que es real. Tu brillo no necesita validación externa.",
-            image: "https://images.pexels.com/photos/935743/pexels-photo-935743.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
+            image: "https://images.pexels.com/photos/935743/pexels-photo-935743.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            context: "redefinir el valor propio frente a opiniones externas"
         },
         {
             id: "fuerza",
@@ -526,7 +572,8 @@
             purpose: "Enfocado en la importancia de buscar ayuda y romper el silencio.",
             emoji: "🤝🌊",
             message: "A veces duele más el silencio de los demás que el grito del agresor. Pero hoy, quiero que sepas que no estás solo/a. Levantarte y hablar de lo que sientes es el acto de valentía más grande que puedes realizar. Pedir ayuda es poder, compartir tu herida es empezar a sanar.",
-            image: "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
+            image: "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            context: "sentirse solo y buscar fuerza para pedir ayuda"
         },
         {
             id: "sueño",
@@ -534,11 +581,11 @@
             purpose: "Para quien desea ser parte del cambio y construir comunidades respetuosas.",
             emoji: "🌍💭",
             message: "El cambio real comienza con tu decisión de no responder al odio con odio. Cada palabra amable que compartes es una pieza clave en la construcción de un espacio digital donde todos podamos ser nosotros mismos sin miedo. Juntos soñamos un internet más humano, empático y valiente.",
-            image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop"
+            image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+            context: "soñar con un internet más humano y respetuoso"
         }
     ];
-
-    // Elementos DOM
+    
     const menuContainer = document.getElementById('menuOptionsContainer');
     const narrativeArea = document.getElementById('narrativeArea');
     const dynamicImg = document.getElementById('dynamicImage');
@@ -546,12 +593,147 @@
     const backBtn = document.getElementById('backToCalmBtn');
     const heroTitleEl = document.getElementById('heroTitle');
     const heroSubtitleEl = document.getElementById('heroSubtitle');
-
-    // --------------------------------------------------------------
-    // 4. EFECTO DE ESCRITURA PARA TÍTULO (SOLO PRIMERA VEZ)
-    // --------------------------------------------------------------
+    const opinionSection = document.getElementById('opinionSection');
+    const opinionInput = document.getElementById('opinionInput');
+    const sendOpinionBtn = document.getElementById('sendOpinionBtn');
+    const aiResponseDiv = document.getElementById('aiResponse');
+    const aiResponseText = document.getElementById('aiResponseText');
+    
+    // ============================================================
+    // 5. TYPWRITER
+    // ============================================================
+    let typeTimeout = null;
+    
+    function stopTypewriter() {
+        if (typeTimeout) {
+            clearTimeout(typeTimeout);
+            typeTimeout = null;
+        }
+    }
+    
+    function startTypewriterWithSound(element, text, speed = 42, onComplete) {
+        stopTypewriter();
+        element.innerHTML = '';
+        let index = 0;
+        
+        function writeLetter() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);
+                playSoftKeystroke();
+                index++;
+                typeTimeout = setTimeout(writeLetter, speed);
+            } else {
+                typeTimeout = null;
+                if (onComplete) onComplete();
+            }
+        }
+        writeLetter();
+    }
+    
+    function setImageFade(imgElement, newSrc) {
+        if (!imgElement) return;
+        imgElement.style.transition = 'opacity 0.35s';
+        imgElement.style.opacity = '0';
+        setTimeout(() => {
+            imgElement.src = newSrc;
+            imgElement.onload = () => imgElement.style.opacity = '1';
+            if (imgElement.complete) imgElement.style.opacity = '1';
+        }, 150);
+    }
+    
+    // ============================================================
+    // 6. OPINIÓN
+    // ============================================================
+    let isWaitingForResponse = false;
+    
+    async function handleSendOpinion() {
+        if (isWaitingForResponse) return;
+        const opinion = opinionInput.value.trim();
+        if (!opinion) {
+            alert("💙 Por favor, escribe tu opinión o cómo te sientes antes de enviar.");
+            return;
+        }
+        
+        isWaitingForResponse = true;
+        sendOpinionBtn.disabled = true;
+        sendOpinionBtn.innerHTML = "⏳ Escribiendo respuesta personalizada...";
+        
+        aiResponseDiv.style.display = "block";
+        aiResponseText.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+        
+        const response = await callGroqAPI(opinion, currentOptionContext);
+        aiResponseText.innerHTML = '';
+        startTypewriterWithSound(aiResponseText, response, 35);
+        
+        sendOpinionBtn.disabled = false;
+        sendOpinionBtn.innerHTML = "✨ Enviar reflexión ✨";
+        isWaitingForResponse = false;
+    }
+    
+    sendOpinionBtn.addEventListener('click', handleSendOpinion);
+    
+    // ============================================================
+    // 7. NAVEGACIÓN
+    // ============================================================
+    function rebuildMenuWithAnimation() {
+        menuContainer.innerHTML = '';
+        optionsData.forEach((opt, idx) => {
+            const card = document.createElement('div');
+            card.className = 'option-card';
+            card.style.animation = 'none';
+            card.offsetHeight;
+            card.style.animation = `cardFadeInUp 0.5s forwards ${idx * 0.05 + 0.05}s`;
+            card.innerHTML = `
+                <span class="option-emoji">${opt.emoji}</span>
+                <div class="option-title">${opt.title}</div>
+                <div class="option-purpose">${opt.purpose}</div>
+            `;
+            card.addEventListener('click', () => showNarrative(opt));
+            menuContainer.appendChild(card);
+        });
+    }
+    
+    function resetToMenu() {
+        if (menuContainer.style.display !== 'none') return;
+        narrativeArea.style.display = 'none';
+        menuContainer.style.display = 'grid';
+        stopTypewriter();
+        typewriterDiv.innerHTML = '';
+        opinionSection.style.display = 'none';
+        aiResponseDiv.style.display = 'none';
+        opinionInput.value = '';
+        aiResponseText.innerHTML = '';
+        rebuildMenuWithAnimation();
+    }
+    
+    function showNarrative(option) {
+        stopTypewriter();
+        if (menuContainer.style.display !== 'none') {
+            menuContainer.style.display = 'none';
+        }
+        narrativeArea.style.display = 'block';
+        opinionSection.style.display = 'none';
+        aiResponseDiv.style.display = 'none';
+        opinionInput.value = '';
+        aiResponseText.innerHTML = '';
+        currentOptionContext = option.context;
+        
+        setImageFade(dynamicImg, option.image);
+        
+        startTypewriterWithSound(typewriterDiv, option.message, 40, () => {
+            opinionSection.style.display = 'block';
+        });
+        
+        narrativeArea.style.animation = 'none';
+        narrativeArea.offsetHeight;
+        narrativeArea.style.animation = 'fadeScale 0.4s ease';
+    }
+    
+    // ============================================================
+    // 8. ANIMACIÓN HERO
+    // ============================================================
     let heroAnimationDone = false;
-
+    
     function typeWriterHero(element, text, speed = 45, callback) {
         let i = 0;
         element.innerHTML = '';
@@ -570,7 +752,7 @@
         }
         type();
     }
-
+    
     function animateHero() {
         if (heroAnimationDone) return;
         heroAnimationDone = true;
@@ -580,102 +762,17 @@
             typeWriterHero(heroSubtitleEl, fullSub, 38);
         });
     }
-
-    // --------------------------------------------------------------
-    // 5. FUNCIONES PARA EL MENÚ Y NARRATIVA (CON SONIDO DE TECLADO)
-    // --------------------------------------------------------------
-    let typeTimeout = null;
-
-    function stopTypewriter() {
-        if (typeTimeout) {
-            clearTimeout(typeTimeout);
-            typeTimeout = null;
-        }
-    }
-
-    function startTypewriterWithSound(element, text, speed = 42) {
-        stopTypewriter();
-        element.innerHTML = '';
-        let index = 0;
-        
-        function writeLetter() {
-            if (index < text.length) {
-                element.textContent += text.charAt(index);
-                playSoftKeystroke();
-                index++;
-                typeTimeout = setTimeout(writeLetter, speed);
-            } else {
-                const cursorSpan = document.createElement('span');
-                cursorSpan.className = 'message-cursor';
-                cursorSpan.textContent = '|';
-                element.appendChild(cursorSpan);
-                typeTimeout = null;
-            }
-        }
-        writeLetter();
-    }
-
-    function setImageFade(imgElement, newSrc) {
-        if (!imgElement) return;
-        imgElement.style.transition = 'opacity 0.35s';
-        imgElement.style.opacity = '0';
-        setTimeout(() => {
-            imgElement.src = newSrc;
-            imgElement.onload = () => imgElement.style.opacity = '1';
-            if (imgElement.complete) imgElement.style.opacity = '1';
-        }, 150);
-    }
-
-    function rebuildMenuWithAnimation() {
-        menuContainer.innerHTML = '';
-        optionsData.forEach((opt, idx) => {
-            const card = document.createElement('div');
-            card.className = 'option-card';
-            card.style.animation = 'none';
-            card.offsetHeight;
-            card.style.animation = `cardFadeInUp 0.5s forwards ${idx * 0.05 + 0.05}s`;
-            card.innerHTML = `
-                <span class="option-emoji">${opt.emoji}</span>
-                <div class="option-title">${opt.title}</div>
-                <div class="option-purpose">${opt.purpose}</div>
-            `;
-            card.addEventListener('click', () => showNarrative(opt));
-            menuContainer.appendChild(card);
-        });
-    }
-
-    function resetToMenu() {
-        if (menuContainer.style.display !== 'none') return;
-        narrativeArea.style.display = 'none';
-        menuContainer.style.display = 'grid';
-        stopTypewriter();
-        typewriterDiv.innerHTML = '';
-        rebuildMenuWithAnimation();
-    }
-
-    function showNarrative(option) {
-        stopTypewriter();
-        if (menuContainer.style.display !== 'none') {
-            menuContainer.style.display = 'none';
-        }
-        narrativeArea.style.display = 'block';
-        setImageFade(dynamicImg, option.image);
-        startTypewriterWithSound(typewriterDiv, option.message, 40);
-        narrativeArea.style.animation = 'none';
-        narrativeArea.offsetHeight;
-        narrativeArea.style.animation = 'fadeScale 0.4s ease';
-    }
-
-    // --------------------------------------------------------------
-    // 6. INICIALIZACIÓN
-    // --------------------------------------------------------------
+    
+    // ============================================================
+    // 9. INIT
+    // ============================================================
     function preloadImages() {
         optionsData.forEach(opt => {
             const img = new Image();
             img.src = opt.image;
         });
     }
-
+    
     function init() {
         rebuildMenuWithAnimation();
         narrativeArea.style.display = 'none';
@@ -686,9 +783,8 @@
         animateHero();
         initKeystrokeAudio();
     }
-
-    backBtn.addEventListener('click', resetToMenu);
     
+    backBtn.addEventListener('click', resetToMenu);
     init();
 </script>
 </body>
