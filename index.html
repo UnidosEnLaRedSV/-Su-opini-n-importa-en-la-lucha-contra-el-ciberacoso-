@@ -351,10 +351,8 @@
     let musicPlaying = false;
     let musicStarted = false;
     
-    // Configurar volumen
     bgMusic.volume = 0.4;
     
-    // Función para iniciar la música
     function startMusic() {
         if (!musicStarted) {
             bgMusic.play().then(() => {
@@ -369,7 +367,6 @@
         }
     }
     
-    // Función para alternar música
     function toggleMusic(e) {
         if (e) e.stopPropagation();
         
@@ -383,20 +380,17 @@
             musicPlaying = false;
             musicBtn.classList.remove('playing');
             musicIcon.textContent = '🔇';
-            console.log('⏸️ Música pausada');
         } else {
             bgMusic.play().then(() => {
                 musicPlaying = true;
                 musicBtn.classList.add('playing');
                 musicIcon.textContent = '🔊';
-                console.log('▶️ Música reproduciéndose');
             }).catch(err => {
                 console.error('❌ Error al reproducir:', err);
             });
         }
     }
     
-    // Eventos del elemento de audio
     bgMusic.addEventListener('play', () => {
         musicPlaying = true;
         musicBtn.classList.add('playing');
@@ -414,17 +408,14 @@
         musicIcon.textContent = '❌';
     });
     
-    // Click en el botón de música
     musicBtn.addEventListener('click', toggleMusic);
     
-    // Activar música con el primer clic en cualquier parte de la página
     document.addEventListener('click', function initMusicOnFirstClick(e) {
         if (!musicStarted && e.target !== musicBtn && !musicBtn.contains(e.target)) {
             startMusic();
         }
     }, { once: false });
     
-    // También permitir tecla 'M'
     document.addEventListener('keydown', (e) => {
         if (e.key === 'm' || e.key === 'M') {
             e.preventDefault();
@@ -432,7 +423,6 @@
         }
     });
     
-    // Intentar reproducir automáticamente al cargar
     window.addEventListener('load', () => {
         setTimeout(() => {
             bgMusic.play().then(() => {
@@ -451,15 +441,17 @@
     console.log('🎵 Sistema de música configurado: musica_relajante.mp3');
     
     // ============================================================
-    // 2. GROQ API
+    // 2. GROQ API - NUEVA API KEY
     // ============================================================
-    const GROQ_API_KEY = "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";
+    const GROQ_API_KEY = "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";
     const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
     const GROQ_MODEL = "llama-3.1-8b-instant";
     
     let currentOptionContext = "";
     
     async function callGroqAPI(userOpinion, contextType) {
+        console.log('📤 Llamando a Groq API...');
+        
         const prompt = `Eres una persona empática, cálida y muy humana que apoya a personas que han leído un mensaje sobre ciberacoso y reflexión personal. El usuario acaba de leer un mensaje que aborda este tema: "${contextType}". Luego escribió la siguiente opinión o sentimiento: "${userOpinion}". Responde de manera muy empática, breve (máximo 3 oraciones), reconfortante, con consejos prácticos y amables. Usa un tono cálido como de un amigo cercano que realmente se preocupa. Incluye emojis sutiles. No uses negatividad. Sé auténtico y cercano. No digas que eres una IA, solo responde como una persona que se preocupa.`;
         
         try {
@@ -482,18 +474,22 @@
             
             if (!response.ok) {
                 const errorData = await response.json();
-                console.error("Error Groq API:", errorData);
+                console.error("❌ Error Groq API:", errorData);
                 
                 if (response.status === 429) {
-                    return "💜 La comunidad de apoyo está teniendo mucha actividad en este momento. Dame un respiro de 30 segundos y vuelve a intentarlo. ¡Tu opinión es muy importante! 🌟";
+                    return "💜 ¡Vaya! Muchas personas están reflexionando al mismo tiempo. Espera 30 segundos y vuelve a intentarlo. ¡Tu opinión es muy valiosa! 🌟";
+                }
+                if (response.status === 401) {
+                    return "💜 La función de IA necesita ser reconectada. La clave de acceso ha expirado. Contacta al administrador. 🌟";
                 }
                 return `💜 Lo siento, en este momento no puedo procesar tu mensaje. Por favor, inténtalo de nuevo más tarde. 🌟`;
             }
             
             const data = await response.json();
+            console.log('✅ Respuesta exitosa de Groq');
             return data.choices[0].message.content;
         } catch (error) {
-            console.error("Error de conexión:", error);
+            console.error("🔥 Error de conexión:", error);
             return "💜 Gracias por compartir tu sentir. Tu voz es importante. Recuerda que cada pequeño paso hacia la reflexión es un acto de valentía. No estás solo/a en este camino. 🌟";
         }
     }
@@ -782,6 +778,9 @@
         preloadImages();
         animateHero();
         initKeystrokeAudio();
+        
+        console.log('✅ Aplicación iniciada correctamente');
+        console.log('🔑 Nueva API Key configurada');
     }
     
     backBtn.addEventListener('click', resetToMenu);
